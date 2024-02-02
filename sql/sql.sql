@@ -27,7 +27,7 @@ CREATE TABLE `tbl_cat_editorial` (
   `Editorial_Editorial` varchar(45) DEFAULT NULL,
   `Editorial_Activo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`EditorialId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -36,6 +36,7 @@ CREATE TABLE `tbl_cat_editorial` (
 
 LOCK TABLES `tbl_cat_editorial` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_editorial` DISABLE KEYS */;
+INSERT INTO `tbl_cat_editorial` VALUES (1,'Verso Destierro','1'),(2,'Libros del Umbral','1'),(3,'Editorial Vicens Vives','1');
 /*!40000 ALTER TABLE `tbl_cat_editorial` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -51,7 +52,7 @@ CREATE TABLE `tbl_cat_genero` (
   `Genero_Genero` varchar(45) DEFAULT NULL,
   `Genero_Activo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`GeneroId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -60,6 +61,7 @@ CREATE TABLE `tbl_cat_genero` (
 
 LOCK TABLES `tbl_cat_genero` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_genero` DISABLE KEYS */;
+INSERT INTO `tbl_cat_genero` VALUES (1,'Aventuras','1'),(2,'Ciencia Ficción','1'),(3,'Terror y misterio','1');
 /*!40000 ALTER TABLE `tbl_cat_genero` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -75,7 +77,7 @@ CREATE TABLE `tbl_cat_idioma` (
   `Idioma_Idioma` varchar(45) DEFAULT NULL,
   `Idioma_Activo` varchar(45) DEFAULT NULL,
   PRIMARY KEY (`IdiomaId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -84,6 +86,7 @@ CREATE TABLE `tbl_cat_idioma` (
 
 LOCK TABLES `tbl_cat_idioma` WRITE;
 /*!40000 ALTER TABLE `tbl_cat_idioma` DISABLE KEYS */;
+INSERT INTO `tbl_cat_idioma` VALUES (1,'Español','1'),(2,'Ingles','1'),(3,'Aleman','1');
 /*!40000 ALTER TABLE `tbl_cat_idioma` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -100,7 +103,7 @@ CREATE TABLE `tbl_hist_ventas` (
   `Ventas_Costo` float DEFAULT NULL,
   `Ventas_LibroId` int(11) DEFAULT NULL,
   PRIMARY KEY (`VentasId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -109,6 +112,7 @@ CREATE TABLE `tbl_hist_ventas` (
 
 LOCK TABLES `tbl_hist_ventas` WRITE;
 /*!40000 ALTER TABLE `tbl_hist_ventas` DISABLE KEYS */;
+INSERT INTO `tbl_hist_ventas` VALUES (1,17,350.2,1);
 /*!40000 ALTER TABLE `tbl_hist_ventas` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -126,7 +130,7 @@ CREATE TABLE `tbl_ope_libro` (
   `Libro_EditorialId` int(11) DEFAULT NULL,
   `Libro_IdiomaId` int(11) DEFAULT NULL,
   PRIMARY KEY (`LibroId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -135,6 +139,7 @@ CREATE TABLE `tbl_ope_libro` (
 
 LOCK TABLES `tbl_ope_libro` WRITE;
 /*!40000 ALTER TABLE `tbl_ope_libro` DISABLE KEYS */;
+INSERT INTO `tbl_ope_libro` VALUES (1,'Dracula',3,2,1),(2,'La flecha negra',1,1,1),(3,'Frankenstein',3,2,2);
 /*!40000 ALTER TABLE `tbl_ope_libro` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -147,4 +152,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2024-02-01 19:40:33
+-- Dump completed on 2024-02-01 20:36:25
