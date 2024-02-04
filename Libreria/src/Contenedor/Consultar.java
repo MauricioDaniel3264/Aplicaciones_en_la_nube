@@ -4,11 +4,12 @@
  */
 package Contenedor;
 
+import MySQLConector.ConexionDB;
 import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -16,65 +17,49 @@ import javax.swing.table.DefaultTableModel;
  * @author Daniel
  */
 public class Consultar extends javax.swing.JFrame {
-    private DefaultTableModel modeloTabla;
+   
     
     public Consultar() {
         initComponents();
-        modeloTabla = new DefaultTableModel(new Object[][]{}, new String[]{"Id", "Nombre", "Editorial", "Genero", "Cantidad", "Costo"});
-        tblMostrar.setModel(modeloTabla);
+        
+    }
+    public void mostrar(String tabla){
+        String sql = "call " + tabla;
+        Statement st;
+        ConexionDB con = new ConexionDB();
+        Connection conexion= con.conectar();
+        System.out.println(sql);
+        DefaultTableModel model = new DefaultTableModel();
+        model.addColumn("ID");
+        model.addColumn("NOMBRE");
+        model.addColumn("EDITORIAL");
+        model.addColumn("GENERO");
+        model.addColumn("CANTIDAD");
+        model.addColumn("COSTO");
+        tblMostrar.setModel(model);
+        
+        String [] datos = new String [6];
+        try{
+            st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                datos[0] = rs.getString(1);
+                datos[1] = rs.getString(2);
+                datos[2] = rs.getString(3);
+                datos[3] = rs.getString(4);
+                datos[4] = rs.getString(5);
+                datos[5] = rs.getString(6);
+                model.addRow(datos);
+                
+            }
+        }catch(SQLException e){
+            JOptionPane.showMessageDialog(null, "ERROR" + e.toString());
+        }
+        
     }
     
-    private void obtenerDatosDesdeSP() {
-        Connection conexion = null;
-
-        try {
-            // Cargar el controlador JDBC
-            Class.forName("org.mariadb.jdbc.Driver");
-
-            // Establecer la conexión
-            String url = "jdbc:mariadb://localhost:3306/libros";
-            String usuario = "root";
-            String contraseña = "";
-
-            conexion = (Connection) DriverManager.getConnection(url, usuario, contraseña);
-
-            System.out.println("¡Conexión exitosa!");
-
-            // Llamar al procedimiento almacenado
-            String callSP = "{call sp_Mostrar()}";
-            try (PreparedStatement statement = conexion.prepareCall(callSP);
-                 ResultSet resultSet = statement.executeQuery()) {
-
-                // Limpiar datos existentes en el modelo de la tabla
-                modeloTabla.setRowCount(0);
-
-                // Iterar a través del conjunto de resultados y agregar filas al modelo de la tabla
-                while (resultSet.next()) {
-                    Object[] fila = new Object[]{
-                            resultSet.getObject("Id"),
-                            resultSet.getObject("Nombre"),
-                            resultSet.getObject("Editorial"),
-                            resultSet.getObject("Genero"),
-                            resultSet.getObject("Cantidad"),
-                            resultSet.getObject("Costo")
-                    };
-                    modeloTabla.addRow(fila);
-                }
-            }
-
-        } catch (ClassNotFoundException | SQLException e) {
-            e.printStackTrace(); // Manejo de errores
-        } finally {
-            // Cerrar la conexión en el bloque finally para garantizar que se cierre incluso si ocurre un error
-            if (conexion != null) {
-                try {
-                    conexion.close();
-                } catch (SQLException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-    }
+   
+    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -139,7 +124,7 @@ public class Consultar extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnMostrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMostrarActionPerformed
-        obtenerDatosDesdeSP();
+           mostrar("sp_Mostrar");
     }//GEN-LAST:event_btnMostrarActionPerformed
 
     /**
