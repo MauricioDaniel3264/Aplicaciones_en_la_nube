@@ -68,4 +68,21 @@ public class RellenarCombos {
             JOptionPane.showMessageDialog(null,"ERROR" + e.toString());
         }
     }
+    
+    public void RellenarComboModificarGenero(String tabla, String valor, JComboBox combo){
+        String sql = "select *from " + tabla;
+        Statement st;
+        ConexionDB con = new ConexionDB();
+        Connection conexion = con.conectar();
+        try{
+            st = conexion.createStatement();
+            ResultSet rs = st.executeQuery(sql);
+            while(rs.next()){
+                combo.addItem(rs.getString(valor));
+            }
+        }
+        catch(SQLException e){
+            JOptionPane.showMessageDialog(null,"ERROR" + e.toString());
+        }
+    }
 }
