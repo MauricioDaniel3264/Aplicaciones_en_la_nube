@@ -15,6 +15,19 @@ public class Vender extends javax.swing.JFrame {
      */
     public Vender() {
         initComponents();
+        
+        labelVenderVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelVenderVolverMouseClicked(evt);
+            }
+        });
+    }
+    
+    private void labelVenderVolverMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Principal principalVentana = new Principal();
+        principalVentana.setVisible(true);
+        
     }
 
     /**
@@ -31,6 +44,7 @@ public class Vender extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         txtVenderCantidad = new javax.swing.JTextField();
         btnVender = new javax.swing.JButton();
+        labelVenderVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -46,6 +60,8 @@ public class Vender extends javax.swing.JFrame {
 
         btnVender.setText("Vender");
 
+        labelVenderVolver.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -53,21 +69,27 @@ public class Vender extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(89, 89, 89)
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(txtVenderCantidad)
-                            .addComponent(txtVenderId)
-                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 71, Short.MAX_VALUE)
-                            .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addGap(146, 146, 146)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(txtVenderCantidad)
+                                .addComponent(txtVenderId)
+                                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(19, 19, 19)
+                                .addComponent(btnVender))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(108, 108, 108)
-                        .addComponent(btnVender)))
-                .addContainerGap(220, Short.MAX_VALUE))
+                        .addGap(20, 20, 20)
+                        .addComponent(labelVenderVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(163, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(33, 33, 33)
+                .addGap(17, 17, 17)
+                .addComponent(labelVenderVolver)
+                .addGap(18, 18, 18)
                 .addComponent(jLabel1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtVenderId, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -77,7 +99,7 @@ public class Vender extends javax.swing.JFrame {
                 .addComponent(txtVenderCantidad, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(32, 32, 32)
                 .addComponent(btnVender)
-                .addContainerGap(106, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
@@ -126,6 +148,7 @@ public class Vender extends javax.swing.JFrame {
     private javax.swing.JButton btnVender;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel labelVenderVolver;
     private javax.swing.JTextField txtVenderCantidad;
     private javax.swing.JTextField txtVenderId;
     // End of variables declaration//GEN-END:variables

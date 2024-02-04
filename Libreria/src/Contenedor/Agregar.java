@@ -23,6 +23,19 @@ public class Agregar extends javax.swing.JFrame {
         re.RellenarComboNombre("tbl_cat_editorial", "Editorial_Editorial", cbEditorial);
         re.RellenarComboGenero("tbl_cat_genero", "Genero_Genero", cbGenero);
         re.RellenarComboIdioma("tbl_cat_idioma", "Idioma_Idioma", cbIdioma);
+        
+        labelAgregarVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelAgregarVolverMouseClicked(evt);
+            }
+        });
+    }
+    
+    private void labelAgregarVolverMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Principal principalVentana = new Principal();
+        principalVentana.setVisible(true);
+        
     }
 
     /**
@@ -48,6 +61,7 @@ public class Agregar extends javax.swing.JFrame {
         txtCantidad = new javax.swing.JTextField();
         jLabel7 = new javax.swing.JLabel();
         btnAgregar = new javax.swing.JButton();
+        labelAgregarVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -79,6 +93,8 @@ public class Agregar extends javax.swing.JFrame {
         jLabel7.setText("Agregar");
 
         btnAgregar.setText("Agregar");
+
+        labelAgregarVolver.setText("Volver");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -112,7 +128,9 @@ public class Agregar extends javax.swing.JFrame {
                                 .addGap(90, 90, 90)
                                 .addComponent(btnAgregar))))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(170, 170, 170)
+                        .addGap(19, 19, 19)
+                        .addComponent(labelAgregarVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(114, 114, 114)
                         .addComponent(jLabel7)))
                 .addContainerGap(46, Short.MAX_VALUE))
         );
@@ -120,8 +138,13 @@ public class Agregar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(16, 16, 16)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel7)
+                        .addGap(16, 16, 16))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addComponent(labelAgregarVolver)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)))
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(txtNombreLibro, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -211,6 +234,7 @@ public class Agregar extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel labelAgregarVolver;
     private javax.swing.JTextField txtCantidad;
     private javax.swing.JTextField txtCosto;
     private javax.swing.JTextField txtNombreLibro;

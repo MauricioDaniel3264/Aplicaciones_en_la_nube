@@ -22,6 +22,19 @@ public class Consultar extends javax.swing.JFrame {
     public Consultar() {
         initComponents();
         
+        labelConsultarVolver.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelConsultarVolverMouseClicked(evt);
+            }
+        });
+        
+    }
+    
+    private void labelConsultarVolverMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Principal principalVentana = new Principal();
+        principalVentana.setVisible(true);
+        
     }
     public void mostrar(String tabla){
         String sql = "call " + tabla;
@@ -73,6 +86,7 @@ public class Consultar extends javax.swing.JFrame {
         jScrollPane2 = new javax.swing.JScrollPane();
         tblMostrar = new javax.swing.JTable();
         btnMostrar = new javax.swing.JButton();
+        labelConsultarVolver = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -96,6 +110,8 @@ public class Consultar extends javax.swing.JFrame {
             }
         });
 
+        labelConsultarVolver.setText("Volver");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -106,7 +122,9 @@ public class Consultar extends javax.swing.JFrame {
                         .addContainerGap()
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(99, 99, 99)
+                        .addGap(21, 21, 21)
+                        .addComponent(labelConsultarVolver, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(41, 41, 41)
                         .addComponent(btnMostrar)))
                 .addContainerGap(19, Short.MAX_VALUE))
         );
@@ -114,7 +132,9 @@ public class Consultar extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(9, Short.MAX_VALUE)
-                .addComponent(btnMostrar)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(btnMostrar)
+                    .addComponent(labelConsultarVolver))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
@@ -165,6 +185,7 @@ public class Consultar extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnMostrar;
     private javax.swing.JScrollPane jScrollPane2;
+    private javax.swing.JLabel labelConsultarVolver;
     private javax.swing.JTable tblMostrar;
     // End of variables declaration//GEN-END:variables
 }
