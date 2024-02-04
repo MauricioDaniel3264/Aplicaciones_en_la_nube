@@ -15,8 +15,66 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        labelAgregar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelAgregarMouseClicked(evt);
+            }
+        });
+        
+        labelConsultar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelConsultarMouseClicked(evt);
+            }
+        });
+        
+        labelModificar.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelModificarMouseClicked(evt);
+            }
+        });
+        
+        labelVender.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelVenderMouseClicked(evt);
+            }
+        });
+        
+        labelSalir.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                labelSalirMouseClicked(evt);
+            }
+        });
+        
+    }
+    
+    private void labelAgregarMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Agregar agregarVentana = new Agregar();
+        agregarVentana.setVisible(true);
+    }
+    
+    private void labelConsultarMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Consultar consultarVentana = new Consultar();
+        consultarVentana.setVisible(true);
+    }
+    
+    private void labelModificarMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Modificar modificarVentana = new Modificar();
+        modificarVentana.setVisible(true);
+    }
+    
+    private void labelVenderMouseClicked(java.awt.event.MouseEvent evt) {
+        // Abre la ventana Agregar.java al hacer clic en labelAgregar
+        Vender venderVentana = new Vender();
+        venderVentana.setVisible(true);
     }
 
+    private void labelSalirMouseClicked(java.awt.event.MouseEvent evt) {
+        // Cierra la aplicación al hacer clic en labelSalir
+        System.exit(0);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -26,17 +84,85 @@ public class Principal extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        labelAgregar = new javax.swing.JLabel();
+        labelModificar = new javax.swing.JLabel();
+        labelConsultar = new javax.swing.JLabel();
+        labelVender = new javax.swing.JLabel();
+        labelSalir = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        labelAgregar.setText("Agregar");
+
+        labelModificar.setText("Modificar");
+
+        labelConsultar.setText("Cosultar");
+
+        labelVender.setText("Vender");
+
+        labelSalir.setText("Salir");
+
+        jLabel4.setText("1.-");
+
+        jLabel6.setText("2.-");
+
+        jLabel7.setText("3.-");
+
+        jLabel8.setText("4.-");
+
+        jLabel9.setText("5.-");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 400, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(52, 52, 52)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(jLabel4, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel9)
+                    .addComponent(jLabel6)
+                    .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(labelAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 59, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(labelSalir, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelVender, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelConsultar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(labelModificar, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addContainerGap(73, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 300, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(39, 39, 39)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelAgregar)
+                    .addComponent(jLabel4))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelModificar)
+                    .addComponent(jLabel6))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelConsultar)
+                    .addComponent(jLabel7))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelVender)
+                    .addComponent(jLabel8))
+                .addGap(18, 18, 18)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(labelSalir)
+                    .addComponent(jLabel9))
+                .addContainerGap(109, Short.MAX_VALUE))
         );
 
         pack();
@@ -78,5 +204,15 @@ public class Principal extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JLabel labelAgregar;
+    private javax.swing.JLabel labelConsultar;
+    private javax.swing.JLabel labelModificar;
+    private javax.swing.JLabel labelSalir;
+    private javax.swing.JLabel labelVender;
     // End of variables declaration//GEN-END:variables
 }
