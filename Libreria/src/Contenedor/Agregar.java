@@ -5,6 +5,15 @@
 package Contenedor;
 
 import ComboBox.RellenarCombos;
+import MySQLConector.ConexionDB;
+import java.sql.CallableStatement;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import javafx.scene.control.ComboBox;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
 
 /**
  *
@@ -29,6 +38,48 @@ public class Agregar extends javax.swing.JFrame {
                 labelAgregarVolverMouseClicked(evt);
             }
         });
+    }
+    
+    public static Connection con;
+    // Declaramos los datos de conexion a la bd
+    private static final String driver="com.mysql.jdbc.Driver";
+    private static final String user="root";
+    private static final String pass="";
+    private static final String url="jdbc:mysql://localhost:3306/libros";
+    // Funcion que va conectarse a mi bd de mysql
+    public Connection conectar(){
+      con = null;
+      try{
+          con = (Connection) DriverManager.getConnection(url, user, pass);
+          if(con!=null){
+          }
+      }
+      catch(SQLException e)
+      {
+          JOptionPane.showMessageDialog(null,"Error" + e.toString());
+      }
+      return con;
+    }
+    
+    public void InsertarLibro(JTextField nombre, ComboBox genero, ComboBox editorial, ComboBox idioma, JTextField cantidad, JTextField costo)
+    {
+        try{
+            Connection conecta = conectar();
+            CallableStatement proc = conecta.prepareCall(" CALL sp_Agregar(?,?,?,?,?,?)");
+            proc.setString(1, nombre.getText());
+            proc.setString(2, genero.getText());
+            proc.setString(3, editorial.());
+            
+            
+            
+            
+            
+            
+            proc.execute();
+        }catch(Exception e)
+        {
+            System.out.println(e);
+        }
     }
     
     private void labelAgregarVolverMouseClicked(java.awt.event.MouseEvent evt) {
@@ -93,6 +144,11 @@ public class Agregar extends javax.swing.JFrame {
         jLabel7.setText("Agregar");
 
         btnAgregar.setText("Agregar");
+        btnAgregar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAgregarActionPerformed(evt);
+            }
+        });
 
         labelAgregarVolver.setText("Volver");
 
@@ -187,6 +243,58 @@ public class Agregar extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_cbEditorialActionPerformed
 
+    private void btnAgregarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAgregarActionPerformed
+        agregarLibro();
+    }//GEN-LAST:event_btnAgregarActionPerformed
+
+    private void agregarLibro() {
+        // Obtén los valores de las cajas de texto y combobox
+        String nombreLibro = txtNombreLibro.getText();
+        String editorial = (String) cbEditorial.getSelectedItem();
+        String genero = (String) cbGenero.getSelectedItem();
+        String idioma = (String) cbIdioma.getSelectedItem();
+        
+        // Maneja los casos en los que las cajas de texto contienen valores no válidos
+        try {
+            double costo = Double.parseDouble(txtCosto.getText());
+            int cantidad = Integer.parseInt(txtCantidad.getText());
+
+            // Realiza la inserción en la base de datos
+            try {
+                Connection conexion = new ConexionDB().conectar();
+                String sql = "call sp_Agregar (Nombre, Genero, Editorial, Idioma, Cantidad, Costo) VALUES (?, ?, ?, ?, ?, ?)";
+                PreparedStatement statement = conexion.prepareStatement(sql);
+                
+                statement.setString(1, nombreLibro);
+                statement.setString(2, editorial);
+                statement.setString(3, genero);
+                statement.setString(4, idioma);
+                statement.setDouble(5, costo);
+                statement.setInt(6, cantidad);
+                
+                statement.executeUpdate();
+                
+                JOptionPane.showMessageDialog(null, "Libro agregado correctamente");
+                
+                // Limpia las cajas de texto después de la inserción
+                limpiarCampos();
+                
+            } catch (SQLException ex) {
+                JOptionPane.showMessageDialog(null, "Error al insertar libro en la base de datos: " + ex.toString());
+            }
+        } catch (NumberFormatException e) {
+            JOptionPane.showMessageDialog(null, "Por favor, ingresa valores numéricos válidos en Costo y Cantidad.");
+        }
+    }
+    
+    private void limpiarCampos() {
+        txtNombreLibro.setText("");
+        cbEditorial.setSelectedIndex(0);
+        cbGenero.setSelectedIndex(0);
+        cbIdioma.setSelectedIndex(0);
+        txtCosto.setText("");
+        txtCantidad.setText("");
+    }
     /**
      * @param args the command line arguments
      */
